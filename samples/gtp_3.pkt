@@ -1,0 +1,19 @@
+(eth
+ (ipv4 src=10.10.10.1 dst=10.10.10.2 prot = 17
+  (udp src=1234 dst = 2152
+   (gtp teid=0x1
+    (ipv4 src=30.10.10.1 dst=20.10.10.1 prot=1
+     (icmp (payload pattern=0 length=666)))))))
+(eth
+ (ipv4 src=10.10.10.1 dst=10.10.10.2 prot = 17
+  (udp src=1234 dst = 2152
+   (gtp teid=0x2
+    (ipv4 src=30.10.10.1 dst=20.10.10.2 prot=1
+     (icmp (payload pattern=0 length=666)))))))
+(eth
+ (ipv4 src=10.10.10.1 dst=10.10.10.2 prot = 17
+  (udp src=1234 dst = 2152
+   (gtp teid=0x3
+    (ipv4 src=30.10.10.1 dst=20.10.10.3 prot=1
+     (icmp (payload pattern=0 length=666)))))))
+

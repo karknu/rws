@@ -1,0 +1,18 @@
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp src=7 dst=6665)))
+(eth
+ (ipv4 src=10.10.10.1 dst=99.99.99.99 prot = 17
+  (udp src=34561 dst=7)))
+(eth
+ (ipv4 src=10.10.10.1 dst=99.99.99.99 prot = 17
+  (udp src=34561 dst=7)))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp src=7 dst=6665)))
+(eth
+ (ipv4 src=10.10.10.1 dst=99.99.99.99 prot = 17
+  (udp src=34561 dst=7)))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp src=7 dst=6665)))

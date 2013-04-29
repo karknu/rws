@@ -1,0 +1,46 @@
+(eth
+ (ipv4 src=10.10.10.1 dst=99.99.99.99 prot = 17
+  (udp src=2048 dst=1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 src=20.20.20.1 dst=222.222.222.222
+      (udp (payload pattern=0 length=8))))))))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp dst=6666 src=1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 dst=20.20.20.1 src=222.222.222.222
+      (udp (payload pattern=0 length=8))))))))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp dst=6666 src=1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 dst=20.20.20.1 src=222.222.222.222
+      (udp (payload pattern=0 length=8))))))))
+(eth
+ (ipv4 src=10.10.10.2 dst=99.99.99.99 prot = 17
+  (udp src=2049 dst=1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 src=20.20.20.1 dst=222.222.222.222
+      (udp (payload pattern=0 length=8))))))))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp dst=6667 src=1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 dst=20.20.20.1 src=222.222.222.222
+      (udp (payload pattern=0 length=8))))))))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp dst=6667 src=1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 dst=20.20.20.1 src=222.222.222.222
+      (udp (payload pattern=0 length=8))))))))
+
+
+
+

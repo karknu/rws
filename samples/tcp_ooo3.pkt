@@ -1,0 +1,59 @@
+
+
+
+
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 syn wsc=2 offset=24 seqno=0x1 ackno=0)))
+(eth type=0x0800 src=00:00:00:00:00:02 dst=00:00:00:00:00:01
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 
+  id=2 prot = 6 csum=0
+  (tcp dst=1234 wsc=2 offset=24  syn ack ackno=2 seqno=1000)))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=2 ackno=1001)))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack wsc=2 offset=24 seqno=2962 ackno=2
+   (payload length=1480 pattern=2))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack wsc=2 offset=24 seqno=5922 ackno=2
+   (payload length=1480 pattern=4))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack wsc=2 offset=24 seqno=2 ackno=2
+   (payload length=1480 pattern=0))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack wsc=2 offset=24 seqno=4442 ackno=2
+   (payload length=1480 pattern=3))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack wsc=2 offset=24 seqno=1482 ackno=2
+   (payload length=1480 pattern=1))))
+
+(eth type=0x0800 src=00:00:00:00:00:02 dst=00:00:00:00:00:01
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 
+  id=2 prot = 6 csum=0
+  (tcp dst=1234 fin ack ackno=5922 seqno=1001)))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 fin ack seqno=5922 ackno=1002)))
+(eth type=0x0800 src=00:00:00:00:00:02 dst=00:00:00:00:00:01
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 
+  id=2 prot = 6 csum=0
+  (tcp dst=1234 ack ackno=5923 seqno=1002)))
+
+
+
+
+

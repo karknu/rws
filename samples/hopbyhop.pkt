@@ -1,0 +1,3 @@
+(eth src=00:11:22:33:44:55 type=0x0800
+ (ipv6 nh =0
+  (hopbyhop nh=17 len=0 (padn len=4 (udp csum=0xdb4d fixcsum=false (payload))))))

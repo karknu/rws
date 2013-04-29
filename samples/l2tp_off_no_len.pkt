@@ -1,0 +1,8 @@
+(eth src=00:11:22:33:44:55 type=0x0800
+ (ipv4 src=10.10.10.1 dst=10.10.10.2 ver=4 hlen=5 tos=0x11 
+  id=2 prot = 17 csum=0
+  (udp src=1234 dst = 1701
+   (l2tp flags=0x0a02 ns=12 nr=1 offset=4
+    (ppp address=0xff
+     (ipv4  src=20.10.10.2 dst=20.10.10.1 prot=17
+      (udp (payload pattern=0 length=8))))))))

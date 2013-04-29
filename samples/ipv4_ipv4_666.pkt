@@ -1,0 +1,6 @@
+(eth src=00:11:22:33:44:55
+ (ipv4 src=9.9.9.1 dst=9.9.9.2  prot=4
+  (ipv4 src=19.19.19.1 dst=19.19.19.2 (udp (payload pattern=0 length=638)))))
+(eth dst=00:11:22:33:44:55
+ (ipv4 src=9.9.9.2 dst=9.9.9.1  prot=4
+  (ipv4 src=19.19.19.2 dst=19.19.19.1 (udp (payload pattern=0 length=638)))))

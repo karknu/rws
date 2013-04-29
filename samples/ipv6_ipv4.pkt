@@ -1,0 +1,8 @@
+(eth (ipv6 src=2001:0:0:0:0:0:0:1 dst=2001:0:0:0:0:0:0:2 nh=4
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 (udp (payload length=1400)))))
+(eth (ipv6 src=2001:0:0:0:0:0:0:2 dst=2001:0:0:0:0:0:0:1 nh=4
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 (udp (payload length=1400)))))
+(eth (ipv6 src=2001:0:0:0:0:0:0:1 dst=2001:0:0:0:0:0:0:2 nh=4
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 (udp (payload length=1400)))))
+(eth (ipv6 src=2001:0:0:0:0:0:0:2 dst=2001:0:0:0:0:0:0:1 nh=4
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 (udp (payload length=1400)))))

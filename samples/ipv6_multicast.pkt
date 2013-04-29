@@ -1,0 +1,3 @@
+(eth src=00:11:22:33:44:55 type=0x86dd
+ (ipv6 dst=0xff01:0:0:0:0:0:0:1
+  (udp src=0 dst = 0 (payload pattern=64) fixcsum=true)))

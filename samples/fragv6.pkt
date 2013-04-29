@@ -1,0 +1,6 @@
+(eth type=0x86dd
+ (ipv6 nh = 44
+  (fragv6 nh=17 off =1 id=0xffffffff (udp (payload pattern=0x1) csum=0xbaf5))))
+(eth type=0x86dd
+ (ipv6 nh = 44
+  (fragv6 nh=17 off =64 id=0xffffffff (payload pattern=0x2))))

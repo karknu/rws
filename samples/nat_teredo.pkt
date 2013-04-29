@@ -1,0 +1,23 @@
+(eth
+ (ipv4 src=10.10.10.1 dst=99.99.99.99 prot = 17
+  (udp src=2048 dst=1234
+   (teredo fixsrc=false fixdst=false
+    (ipv6 src=0x2001:0x0:0xcafe:0xbabe:0x0:0xe5f5:0x9b9b:0x9bfd
+          dst=0x2001:0x0:0xcafe:0xbabe:0x0:0xfb2d:0x9c9c:0x9c9c
+     (udp (payload pattern=0 length=8)))))))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp dst=6666 src=1234
+   (teredo fixsrc=true fixdst=true
+    (ipv6 
+     (udp (payload pattern=0 length=8)))))))
+(eth
+ (ipv4 dst=100.100.100.2 src=99.99.99.99 prot = 17
+  (udp dst=6666 src=1234
+   (teredo fixsrc=true fixdst=true
+    (ipv6 
+     (udp src=777 dst=777 (payload pattern=0 length=8)))))))
+
+
+
+

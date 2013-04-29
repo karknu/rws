@@ -1,0 +1,21 @@
+(eth
+ (ipv4 dst=10.0.0.2 src=20.0.0.2 
+  id=2 prot = 47 csum=0
+  (gre key=0xcafecafe seq=0xaaaaaaaa
+   (ipv4 ttl=64 dst=10.0.0.1 src=20.0.0.2 tos=0x02
+    id=2 prot = 17 csum=0
+    (udp (payload pattern=0 length=638))))))
+(eth type = 0x86dd
+ (ipv6 nh=47
+  (gre key=0x12345678 seq=0xaaaaaaaa
+   (ipv4 ttl=64 dst=10.0.0.1 src=20.0.0.2 tos=0x02
+    id=2 prot = 47 csum=0
+    (gre key=0 seq = 0
+     (ipv4 ttl=64 dst=10.0.0.1 src=20.0.0.2 tos=0x02
+      id=2 prot = 17 csum=0
+      (udp (payload pattern=0 length=638))))))))
+(eth
+ (ipv4 dst=10.0.0.1 src=20.0.0.2 tos=0x03
+  id=2 prot = 17 csum=0
+  (udp (payload pattern=0 length=638))))
+

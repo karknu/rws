@@ -1,0 +1,14 @@
+(eth type=0x0800
+ (ipv4 src=10.255.255.2 dst=192.168.1.1 prot=1
+  (icmp type=8 code=0 seq=1 (payload pattern=0 length=8))))
+(eth type=0x0800
+ (ipv4 dst=100.100.100.2 src=192.168.1.1 prot=1
+  (icmp type=0 code=0 seq=1 id=0 (payload pattern=0 length=8))))
+(eth type=0x0800
+ (ipv4 src=10.255.255.2 dst=192.168.1.1 prot=1
+  (icmp type=8 code=0 seq=2 (payload pattern=0 length=8))))
+(eth type=0x0800
+ (ipv4 dst=100.100.100.2 src=192.168.1.1 prot=1
+  (icmp type=0 code=0 seq=2 id= 0 (payload pattern=0 length=8))))
+
+

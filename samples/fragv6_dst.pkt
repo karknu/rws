@@ -1,0 +1,4 @@
+(eth type=0x86dd
+ (ipv6 nh = 60
+  (hopbyhop nh=17 len=13 (padn len=4
+   (payload pattern=0x1)))))

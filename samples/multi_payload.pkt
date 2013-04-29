@@ -1,0 +1,2 @@
+(eth type=0x800 {(ipv4 (udp {(payload pattern=0xbb),(payload pattern=0xaa)})), (payload pattern=0xab)})
+(eth type=0x800 (ipv4 (udp)))

@@ -1,0 +1,74 @@
+
+
+
+
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 syn seqno=0x1 ackno=0)))
+(eth type=0x0800 src=00:00:00:00:00:02 dst=00:00:00:00:00:01
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 
+  id=2 prot = 6 csum=0
+  (tcp dst=1234 syn ack ackno=2 seqno=1000)))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=2 ackno=1001)))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=1482 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=4442 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=7402 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=10362 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=13322 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=11842 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=8882 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=5922 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=2962 ackno=2 (payload length=1480))))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 ack seqno=2 ackno=2 (payload length=1480))))
+
+(eth type=0x0800 src=00:00:00:00:00:02 dst=00:00:00:00:00:01
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 
+  id=2 prot = 6 csum=0
+  (tcp dst=1234 fin ack ackno=14802 seqno=1001)))
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=1.1.1.1 dst=1.1.1.2 
+  id=2 prot = 6 csum=0
+  (tcp src=1234 fin ack seqno=14802 ackno=1002)))
+(eth type=0x0800 src=00:00:00:00:00:02 dst=00:00:00:00:00:01
+ (ipv4 src=1.1.1.2 dst=1.1.1.1 
+  id=2 prot = 6 csum=0
+  (tcp dst=1234 ack ackno=14803 seqno=1002)))
+
+
+
+
+

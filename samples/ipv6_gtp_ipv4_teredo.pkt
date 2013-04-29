@@ -1,0 +1,54 @@
+(eth type=0x86dd
+ (ipv6 src=2001:0:0:0:0:0:0:1 dst=2001:0:0:0:0:0:0:2
+  (udp src=2152 dst=2152
+   (gtp teid=0xcafebabe
+    (ipv4 src=20.10.10.1 dst=99.99.99.99 prot=17
+     (udp src=1234 dst=5678
+      (teredo fixsrc=true fixdst=true
+       (ipv6
+        (udp src=2222 (payload length=128))))))))))
+(eth type=0x86dd
+ (ipv6 dst=2001:0:0:0:0:0:0:1 src=2001:0:0:0:0:0:0:2
+  (udp src=2152 dst=2152
+   (gtp teid=0xbabecafe
+    (ipv4 dst=20.10.10.1 src=99.99.99.99 prot=17
+     (udp dst=1234 src=5678
+      (teredo fixsrc=true fixdst=true
+       (ipv6
+        (udp dst=2222 (payload length=128))))))))))
+(eth type=0x86dd
+ (ipv6 dst=2001:0:0:0:0:0:0:1 src=2001:0:0:0:0:0:0:2
+  (udp src=2152 dst=2152
+   (gtp teid=0xbabecafe
+    (ipv4 dst=20.10.10.1 src=99.99.99.99 prot=17
+     (udp dst=1234 src=5678
+      (teredo fixsrc=true fixdst=true
+       (ipv6
+        (udp dst=2223 (payload length=128))))))))))
+(eth type=0x86dd
+ (ipv6 src=2001:0:0:0:0:0:0:1 dst=2001:0:0:0:0:0:0:2
+  (udp src=2152 dst=2152
+   (gtp teid=0xcafebabf
+    (ipv4 src=20.10.10.2 dst=99.99.99.99 prot=17
+     (udp src=1234 dst=5678
+      (teredo fixsrc=true fixdst=true
+       (ipv6
+        (udp src=2222 (payload length=128))))))))))
+(eth type=0x86dd
+ (ipv6 dst=2001:0:0:0:0:0:0:1 src=2001:0:0:0:0:0:0:2
+  (udp src=2152 dst=2152
+   (gtp teid=0xbabfcafe
+    (ipv4 dst=20.10.10.2 src=99.99.99.99 prot=17
+     (udp dst=1234 src=5678
+      (teredo fixsrc=true fixdst=true
+       (ipv6
+        (udp dst=2222 (payload length=128))))))))))
+(eth type=0x86dd
+ (ipv6 dst=2001:0:0:0:0:0:0:1 src=2001:0:0:0:0:0:0:2
+  (udp src=2152 dst=2152
+   (gtp teid=0xbabfcafe
+    (ipv4 dst=20.10.10.2 src=99.99.99.99 prot=17
+     (udp dst=1234 src=5678
+      (teredo fixsrc=true fixdst=true
+       (ipv6
+        (udp dst=2223 (payload length=128))))))))))

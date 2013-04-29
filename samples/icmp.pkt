@@ -1,0 +1,4 @@
+(eth src=00:11:22:33:44:55 type=0x0800
+ (ipv4 ttl=3 src=0.0.0.0 dst=0.0.0.0 ver=4 hlen=5 tos=0x11 
+  id=2 prot = 1 csum=0
+  (icmp (payload pattern=0 length=8))))

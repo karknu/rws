@@ -1,0 +1,24 @@
+(eth type=0x0800
+ (ipv4 src=10.10.10.1 dst=10.10.10.2 prot = 17
+  (udp src=2152 dst = 2152
+   (gtp teid=0x1
+    (ipv4 src=20.10.10.1 dst=20.10.10.2 prot=17
+     (udp src=1234 (payload pattern=0 length=8)))))))
+(eth type=0x0800
+ (ipv4 src=10.10.10.2 dst=10.10.10.1 prot = 17
+  (udp src=2152 dst = 2152
+   (gtp teid=0x101
+    (ipv4 src=20.10.10.2 dst=20.10.10.1 prot=17
+     (udp dst=1234 (payload pattern=0 length=8)))))))
+(eth type=0x0800
+ (ipv4 src=10.10.10.1 dst=10.10.10.2 prot = 17
+  (udp src=2152 dst = 2152
+   (gtp teid=0x2
+    (ipv4 src=20.10.10.1 dst=20.10.10.2 prot=17
+     (udp src=1234 (payload pattern=0 length=8)))))))
+(eth type=0x0800
+ (ipv4 src=10.10.10.2 dst=10.10.10.1 prot = 17
+  (udp src=2152 dst = 2152
+   (gtp teid=0x102
+    (ipv4 src=20.10.10.2 dst=20.10.10.1 prot=17
+     (udp dst=1234 (payload pattern=0 length=8)))))))

@@ -1,0 +1,18 @@
+(eth type=0x0800
+ (ipv4 src=1.1.1.1 dst=2.2.2.2 prot = 17
+  (udp src=1234 dst = 1701
+   (l2tp tid=1 sid=1
+    (ppp
+     (ipv4 src=20.10.10.10 dst=40.40.40.1 prot = 17
+      (udp dst=1235 src=1024 (teredo fixsrc=true fixdst=true
+       (ipv6 nh=41
+        (ipv6
+         (udp (payload pattern=0 length=8))))))))))))
+(eth type=0x0800
+ (ipv4 src=1.1.1.1 dst=2.2.2.2 prot = 17
+  (udp src=1234 dst = 1701
+   (l2tp tid=2 sid=2
+    (ppp protocol=0x0057
+	 (ipv6
+         (udp (payload pattern=0 length=8))))))))
+

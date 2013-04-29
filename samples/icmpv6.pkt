@@ -1,0 +1,6 @@
+(eth type=0x86dd
+ (ipv6 nh=58 src=20:0:0:0:0:0:0:1 dst=20:0:0:0:0:0:0:2
+  (icmpv6 type=128 code=0 pad=0xcafebabe (payload pattern=0x42) fixcsum=true)))
+(eth type=0x86dd
+ (ipv6 nh=58 src=20:0:0:0:0:0:0:2 dst=20:0:0:0:0:0:0:1
+  (icmpv6 type=129 code=0 pad=0xcafebabe (payload pattern=0x42) fixcsum=true)))

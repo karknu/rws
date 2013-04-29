@@ -1,0 +1,8 @@
+(eth type=0x0800 src=00:00:00:00:00:01 dst=00:00:00:00:00:02
+ (ipv4 src=10.0.0.1 dst=10.0.0.2 ver=4 hlen=5 tos=0x11
+  prot = 17 csum=0
+  (udp src=1234 dst=7 (payload pattern=0 length=638))))
+(ethtype=0x0800 dst=00:00:00:00:00:01 src=00:00:00:00:00:02
+ (ipv4 src=10.0.0.2 dst=10.0.0.1 ver=4 hlen=5
+  id=2 prot = 17 csum=0
+  (udp src=7 dst=1234 (payload pattern=0 length=638))))

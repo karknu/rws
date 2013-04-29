@@ -1,0 +1,12 @@
+(eth src=00:11:22:33:44:55 type=0x0800
+ (ipv4src=10.10.10.1 dst=10.10.10.2  prot = 17
+  (udp src=2152 dst = 2152
+   (gtp teid=0xcafebabe
+    (ipv4 src=20.10.10.1 dst=20.10.10.2 prot=17
+     (udp dst=1701 (payload pattern=0 length=8)))))))
+(eth src=00:11:22:33:44:55 type=0x0800
+ (ipv4src=10.10.10.1 dst=10.10.10.2  prot = 17
+  (udp src=2152 dst = 2152
+   (gtp teid=0xcafebabe
+    (ipv4 src=20.10.10.1 dst=20.10.10.2 prot=17
+     (udp dst=1701 (payload pattern=0 length=8)))))))

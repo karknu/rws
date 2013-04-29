@@ -1,0 +1,6 @@
+(eth type=0x86dd
+ (ipv6
+  (udp (payload pattern=0x42) fixcsum=true)))
+(ethtype=0x86dd
+ (ipv6
+  (udp (payload pattern=0x42 length=1400) fixcsum=true)))

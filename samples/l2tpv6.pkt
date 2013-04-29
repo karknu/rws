@@ -1,0 +1,16 @@
+(eth src=00:11:22:33:44:55 type=0x86dd
+ (ipv6 nh = 17
+  (udp src=1701 dst = 1701
+   (l2tp
+    (ppp address=0xff protocol=0x0057
+     (ipv6 nh=17
+      (udp (payload pattern=0 length=8))))))))
+(eth src=00:11:22:33:44:55 type=0x86dd
+ (ipv6 nh = 17
+  (udp src=1701 dst = 1701
+   (l2tp
+    (ppp address=0xff protocol=0x0057
+     (ipv6 ver = 5 nh=17
+      (udp (payload pattern=0 length=8))))))))
+
+

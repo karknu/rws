@@ -1,0 +1,19 @@
+(eth
+ (ipv4 dst=10.0.0.2 src=20.0.0.2 
+  id=2 prot = 4 csum=0
+  (ipv4 ttl=64 dst=10.0.0.1 src=20.0.0.2 tos=0x02
+   id=2 prot = 17 csum=0
+   (udp (payload pattern=0 length=638)))))
+(eth type=0x86dd
+ (ipv4 dst=10.0.0.3 src=20.0.0.2 
+  id=2 prot = 4 csum=0
+  (ipv4 ttl=64 dst=10.0.0.1 src=20.0.0.2 tos=0x02
+   id=2 prot = 4 csum=0
+   (ipv4 ttl=64 dst=10.0.0.1 src=20.0.0.2 tos=0x02
+    id=2 prot = 17 csum=0
+    (udp (payload pattern=0 length=638))))))
+(eth
+ (ipv4 dst=10.0.0.1 src=20.0.0.2 tos=0x03
+  id=2 prot = 17 csum=0
+  (udp (payload pattern=0 length=638))))
+

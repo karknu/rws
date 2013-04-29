@@ -1,0 +1,16 @@
+(eth
+ (ipv4 src=10.10.10.10 dst=10.10.10.11
+  (udp src=1701 dst = 1701
+   (l2tp
+    (ppp address=0xff protocol=0x0057
+     (ipv6 nh=17
+      (udp (payload pattern=0 length=8))))))))
+(eth 
+ (ipv4 src=10.10.10.10 dst=10.10.10.11
+  (udp src=1701 dst = 1701
+   (l2tp
+    (ppp address=0xff protocol=0x0057
+     (ipv6 ver = 5 nh=17
+      (udp (payload pattern=0 length=8))))))))
+
+

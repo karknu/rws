@@ -1,0 +1,9 @@
+
+.*swp
+*~
+*.hi
+*.o
+dist
+.hpc
+*.pcap
+
