@@ -65,7 +65,7 @@ Executable rws
   Build-depends: base==4.*, bytestring, binary==0.5.*, parsec==3.1.*
   
   -- Modules not exported by this package.
-  -- Other-modules:       
+  Other-modules: Ethernet, Icmp, Ppp, Fragv6, IcmpV6, PseudoSum, Gre, L2tp, Gtp, Lexer, SerializePcap, HexPayload, Packet, Tcp, HopByHop, PadN, Teredo, IPv4, Parser, Udp, IPv6, Payload, Util
   
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
   -- Build-tools:         
