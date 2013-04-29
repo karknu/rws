@@ -13,10 +13,10 @@ Version:             0.1
 Synopsis:            Packet Generation
 
 -- A longer description of the package.
--- Description:         
+Description:         Generate pcaps from a simple packet description language
 
 -- URL for the project homepage or repository.
-Homepage:            contrib.int.prnw.net:/git/misc/rws
+Homepage:            https://github.com/karknu/rws
 
 -- The license under which the package is released.
 License:             BSD3
@@ -46,7 +46,7 @@ Build-type:          Simple
 -- Extra-source-files:  
 
 -- Constraint on the version of Cabal needed to build this package.
-Cabal-version:       >=1.2
+Cabal-version:       >=1.8
 
 Test-Suite test-qt
   type: exitcode-stdio-1.0
@@ -70,6 +70,9 @@ Executable rws
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
   -- Build-tools:         
   hs-source-dirs:      src
-  ghc-options: -Wall -fno-warn-missing-signatures -fno-warn-orphans -fno-warn-unused-do-bind -O2 -fexcess-precision -optc-O3 -optc-ffast-math -rtsopts -auto-all
+  ghc-options: -Wall -fno-warn-missing-signatures -fno-warn-orphans -fno-warn-unused-do-bind -fexcess-precision -optc-O3 -optc-ffast-math -rtsopts -auto-all
 
   
+source-repository head
+  type:     git
+  location: git://github.com/karknu/rws.git
