@@ -19,6 +19,7 @@ import Packet
 import PadN()
 import Ppp()
 import Payload()
+import Tipc()
 import Tcp()
 import Teredo
 import Udp()
@@ -98,6 +99,7 @@ pcapPacketWrite (PPayload p) mp        = packetWrite p mp BL.empty
 pcapPacketWrite (PPadN p) mp           = packetWrite p mp $ packPayloadCarried p mp
 pcapPacketWrite (PPpp p) mp            = packetWrite p mp $ packPayloadCarried p mp
 pcapPacketWrite (PTcp p) mp            = packetWrite p mp $ packPayloadCarried p mp
+pcapPacketWrite (PTipc p) mp           = packetWrite p mp $ packPayloadCarried p mp
 pcapPacketWrite (PUdp p) mp            = packetWrite p mp $ packPayloadCarried p mp
 pcapPacketWrite (PTeredo p) mp = do -- no auth and org support yet
   let ph = teredoPktHeader p

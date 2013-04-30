@@ -22,6 +22,7 @@ import Fragv6
 import HopByHop
 import PadN
 import HexPayload
+import Tipc
 
 #ifdef HRWS_TEST
 --import Debug.Trace
@@ -52,7 +53,8 @@ packetDeclH = choice [
     try $ teredoDecl packetDecl,
     try $ fragv6Decl packetDecl,
     try $ hopByHopDecl packetDecl,
-    try $ hexPayloadDecl packetDecl
+    try $ hexPayloadDecl packetDecl,
+    try $ tipcDecl packetDecl
     ]
 
 packetDecl :: Parser Packet

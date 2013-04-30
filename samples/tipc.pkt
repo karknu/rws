@@ -1,0 +1,4 @@
+(eth type=0x88CA (tipc))
+(eth type=0x88CA (tipc hsize=8 mtype=3 onode=0x010203 dnode=0x040506))
+(eth type=0x88CA (tipc (ipv4 (ipv6 (tcp (payload length=1260 pattern=0x42))))))
+

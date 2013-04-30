@@ -439,6 +439,39 @@ defaultPadNPacket = PadNPkt defaultPadN [PPayload $ Payload 0 0]
 
 instance PayloadCarrier PadNPkt where payloadCarried = padNPktPayload
 
+data Tipc = Tipc {
+    tipcVer :: !Word8,
+    tipcUser :: !Word8,
+    tipcHsize :: !Word8,
+    tipcFlags :: !Word8,
+    tipcMsize :: Maybe Word32,
+    tipcMtype :: !Word8,
+    tipcError :: !Word8,
+    tipcReroute :: !Word8,
+    tipcLsc :: !Word8,
+    tipcRes :: !Word8,
+    tipcBack :: !Word16,
+    tipcLack :: !Word16,
+    tipcLseq :: !Word16,
+    tipcPnode :: !Word32,
+    tipcOport :: !Word32,
+    tipcDportNet :: !Word32,
+    tipcOnode :: Maybe Word32,
+    tipcDnode :: Maybe Word32
+} deriving (Show, Eq)
+
+data TipcPkt = TipcPkt {
+    tipcPktHeader :: Tipc,
+    tipcPktPayload :: [Packet]
+} deriving (Show, Eq)
+
+instance PayloadCarrier TipcPkt where payloadCarried = tipcPktPayload
+
+defaultTipc :: Tipc
+defaultTipc = Tipc 2 0 6 0 Nothing 0 0 0 3 0 0 0 0 0 0 0 Nothing Nothing
+defaultTipcPacket :: TipcPkt
+defaultTipcPacket = TipcPkt defaultTipc [PPayload $ Payload 0 0]
+
 data Payload = Payload {
     payloadPattern :: Word32,
     payloadLength  :: Word16
@@ -472,6 +505,7 @@ data Packet =
   | PFragv6 Fragv6Pkt
   | PHopByHop HopByHopPkt
   | PPadN PadNPkt
+  | PTipc TipcPkt
   deriving (Show,Eq)
 
 
