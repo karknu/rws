@@ -468,7 +468,7 @@ data TipcPkt = TipcPkt {
 instance PayloadCarrier TipcPkt where payloadCarried = tipcPktPayload
 
 defaultTipc :: Tipc
-defaultTipc = Tipc 2 0 6 0 Nothing 0 0 0 3 0 0 0 0 0 0 0 Nothing Nothing
+defaultTipc = Tipc 2 0 6 0 Nothing 0 0 0 3 0 0 0 0 0xabba 1234 5678 Nothing Nothing
 defaultTipcPacket :: TipcPkt
 defaultTipcPacket = TipcPkt defaultTipc [PPayload $ Payload 0 0]
 

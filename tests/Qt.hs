@@ -19,6 +19,7 @@ import Parser
 import Ppp
 import Tcp
 import Teredo
+import Tipc
 import Udp
 
 main :: IO ()
@@ -42,6 +43,7 @@ tests =
   pppTests ++
   tcpTests ++
   teredoTests ++
+  tipcTests ++
   udpTests
 
 

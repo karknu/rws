@@ -20,6 +20,7 @@ import Test.QuickCheck hiding ((.&.))
 import Test.Framework (Test)
 import Test.Framework.Providers.QuickCheck2 (testProperty)
 import Text.Printf
+
 #endif
 
 parseTipcPkt :: Parser Packet -> Parser TipcPkt
@@ -92,11 +93,26 @@ instance PacketWriteable TipcPkt where packetWrite p = tipcWrite (tipcPktHeader 
 
 instance Arbitrary Tipc where
   arbitrary = do
-    f <- arbitrary
-    p <- arbitrary
-    k <- arbitrary
-    s <- arbitrary
-    return (Tipc f p k s)
+    ver <- arbitrary
+    user <- arbitrary
+    hsize <- arbitrary
+    flags <- arbitrary
+    msize <- arbitrary
+    mtype <- arbitrary
+    err <- arbitrary
+    reroute <- arbitrary
+    lsc <- arbitrary
+    res <- arbitrary
+    back <- arbitrary
+    lack <- arbitrary
+    lseq <- arbitrary
+    pnode <- arbitrary
+    oport <- arbitrary
+    dportnet <- arbitrary
+    onode <- arbitrary
+    dnode <- arbitrary
+    return (Tipc ver user hsize flags (Just msize) mtype err reroute lsc res back lack lseq pnode
+            oport dportnet (Just onode) (Just dnode))
 
 testValidParse :: String -> (Tipc -> Bool) -> Bool
 testValidParse str fn =
@@ -115,13 +131,20 @@ testTipcPkt _ = error "Unexpected packet type"
 testTipcPacket :: Tipc -> Bool
 testTipcPacket pkt =
   let cmp p = pkt == p in
-  testValidParse (printf "(tipc flags=%d protocol=%d key=%d seq=%d)") cmp
+  testValidParse (printf "(tipc ver=%d user=%d hsize=%d flags=%d msize=%d mtype=%d error=%d reroute=%d lsc=%d res=%d back=%d lack=%d lseq=%d pnode=%d oport=%d dportnet=%d onode=%d dnode=%d)"
+                  (tipcVer pkt) (tipcUser pkt) (tipcHsize pkt) (tipcFlags pkt)
+                  (fromJust $ tipcMsize pkt) (tipcMtype pkt) (tipcError pkt) (tipcReroute pkt)
+                  (tipcLsc pkt) (tipcRes pkt) (tipcBack pkt) (tipcLack pkt) (tipcLseq pkt)
+                  (tipcPnode pkt) (tipcOport pkt) (tipcDportNet pkt) (fromJust $ tipcOnode pkt)
+                  (fromJust $ tipcDnode pkt)) cmp
 
 testTipcWrite :: () -> Bool
 testTipcWrite _ =
-  let expPkt = B.pack [0x30, 0x00, 0x08, 0x00, 0x12, 0x34, 0x56, 0x78, 0xaa, 0xaa, 0xaa, 0xaa] in
+  let expPkt = B.pack [0x41, 0x00, 0x00, 0x20, 0x60, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                       0x00, 0x00, 0xab, 0xba, 0x00, 0x00, 0x04, 0xd2, 0x00, 0x00, 0x16, 0x2e,
+                       0x00, 0x01, 0x02, 0x03, 0x00, 0x04, 0x05, 0x06] in
   let cmp p = runPut (tipcWrite p Nothing B.empty) == expPkt in
-  testValidParse "(tipc flags=0x3000 protocol=0x0800 key=0x12345678 seq=0xaaaaaaaa)" cmp
+  testValidParse "(tipc ver=2 user=0 mtype=3 onode=0x010203 dnode=0x040506 hsize=8)" cmp
 
 tipcTests :: [Test]
 tipcTests = [
