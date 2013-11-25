@@ -1,6 +1,7 @@
 {-# LANGUAGE CPP #-}
 module Ethernet where
 
+import Control.Monad
 import Data.Binary.Put
 import Data.Bits
 import qualified Data.ByteString.Lazy as B
@@ -53,14 +54,44 @@ parseMacAddress s = do
   whiteSpace
   return a
 
+parseVlanAttributes :: Parser Vlan
+parseVlanAttributes  = permute
+  (tuple <$?> (0x8100, parseIntAttribute "tpid")
+         <|?> (0, parseIntAttribute "pcp")
+         <|?> (False, parseBoolAttribute "dei")
+         <|?> (0x0000, parseIntAttribute "vid"))
+  where
+    tuple = Vlan
+
+parseVlan :: Parser Vlan
+parseVlan = do
+  whiteSpace
+  char '('
+  v <- parseVlanAttributes
+  char ')'
+  whiteSpace
+  return v
+
+parseVlans :: Parser [Vlan]
+parseVlans = do
+  whiteSpace
+  char '['
+  symbol "vlans"
+  vs <- many1 parseVlan
+  char ']'
+  whiteSpace
+  return vs
+
+
 parseEthFrame :: Parser Packet -> Parser EthernetFrame
 parseEthFrame f = permute
   (tuple <$?> (MacAddress 0 0 0 0 0 1, parseMacAddress "dst" )
          <|?> (MacAddress 0 0 0 0 0 2, parseMacAddress "src" )
          <|?> (0x800, parseIntAttribute "type")
+         <|?> ([], parseVlans)
          <|?> ([PPayload defaultPayload], parsePayload f))
   where
-    tuple a b c = EthernetFrame (Ethernet a b c)
+    tuple a b c d = EthernetFrame (Ethernet a b c d)
 
 ethDecl :: Parser Packet -> Parser Packet
 ethDecl f = do
@@ -81,7 +112,18 @@ ethernetWriteHdr :: Ethernet -> Put
 ethernetWriteHdr f = do
     macAddressWrite (ethernetDst f)
     macAddressWrite (ethernetSrc f)
+    when (ethernetVlans f /= []) $
+      mapM_ vlanWrite (ethernetVlans f)
     putWord16be (ethernetType f)
+
+vlanWrite :: Vlan -> Put
+vlanWrite v = do
+  putWord16be $ vlanTpid v
+  let dei = if vlanDei v then 1::Word16
+                         else 0::Word16
+  let tci = (fromIntegral (vlanPcp v) `shiftL` 13) .|.
+            (fromIntegral dei `shiftL` 12) .|. vlanVid v
+  putWord16be tci
 
 ethernetWrite :: Ethernet -> Maybe Packet -> B.ByteString -> Put
 ethernetWrite h _ bs = do
@@ -108,7 +150,7 @@ instance Arbitrary Ethernet where
     dst <- arbitrary
     src <- arbitrary
     t <- arbitrary
-    return (Ethernet dst src t)
+    return (Ethernet dst src t [])
 
 testValidParse :: String -> (Ethernet -> Bool) -> Bool
 testValidParse str fn =

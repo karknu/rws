@@ -1,0 +1,4 @@
+(eth src=00:11:22:33:44:55 type=0x0800 [vlans (vid=123) (vid=222 dei=true)]
+     (ipv4 (udp)))
+(eth src=00:11:22:33:44:55 type=0x0800
+     (ipv4 (udp)))

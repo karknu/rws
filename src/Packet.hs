@@ -29,7 +29,8 @@ showMacAddress a = printf "%02x:%02x:%02x:%02x:%02x:%02x" (macAddress0 a) (macAd
 data Ethernet = Ethernet {
   ethernetDst :: MacAddress,
   ethernetSrc :: MacAddress,
-  ethernetType :: Word16
+  ethernetType :: Word16,
+  ethernetVlans :: [Vlan]
 } deriving (Show,Eq)
 
 data EthernetFrame = EthernetFrame {
@@ -42,10 +43,17 @@ instance PayloadCarrier EthernetFrame where payloadCarried = ethernPayload
 defaultEthernet :: Ethernet
 defaultEthernet = Ethernet (MacAddress 0 0 0 0 0 1) 
                             (MacAddress 0 0 0 0 0 2)
-                            0x800
+                            0x800 []
 defaultEthernetFrame :: EthernetFrame
 defaultEthernetFrame = EthernetFrame defaultEthernet
                         [PPayload defaultPayload]
+
+data Vlan = Vlan {
+  vlanTpid :: Word16,
+  vlanPcp :: Word8,
+  vlanDei :: Bool,
+  vlanVid :: Word16
+} deriving (Show, Eq)
 
 data IPv6Addr = IPv6Addr {
              ipv6Addr0 :: !Word32,
