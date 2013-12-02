@@ -53,7 +53,7 @@ parseIPv4Pkt f = permute
          <|?> (0xa0a0a0a2, parseIPv4Address "dst")
          <|?> (4, parseIPv4Ver)
          <|?> (5, parseIPv4Hlen)
-         <|?> (0, parseIPv4Len)
+         <|?> (-1, parseIntAttribute "len")
          <|?> (0x1234, parseIPv4Id)
          <|?> (17, parseIPv4Prot)
          <|?> (0, try parseIPv4Tos)
@@ -84,7 +84,7 @@ ipv4WriteHdr :: IPv4 -> Put
 ipv4WriteHdr p = do
     putWord8    ((ipv4Ver p `shiftL` 4) .|. ipv4Hlen p)
     putWord8    (ipv4Tos p)
-    putWord16be (ipv4Len p)
+    putWord16be $ fromIntegral (ipv4Len p)
     putWord16be (ipv4Id p)
     putWord16be (ipv4Offset p)
     putWord8    (ipv4Ttl p)
@@ -97,7 +97,8 @@ instance PacketWriteable IPv4Pkt where packetWrite p = ipv4Write $ ipv4PktHeader
 
 ipv4Write :: IPv4 -> Maybe Packet -> B.ByteString -> Put
 ipv4Write h _ bs = do
-    let hdr = h {ipv4Len = fromIntegral $ 20 + B.length bs}
+    let hdr = if ipv4Len h == -1 then h {ipv4Len = fromIntegral $ 20 + B.length bs}
+                                 else h
     let sum32 = if ipv4CorrectCsum hdr
                    then csumFin $ csumAdd (B.unpack $ runPut $
                                            ipv4WriteHdr hdr) 0
@@ -114,7 +115,7 @@ instance Arbitrary IPv4 where
     v   <- choose (0, 15)
     hl  <- choose (0, 15)
     tos <- arbitrary
-    len <- arbitrary
+    len <- choose (0, 64*1024)
     i   <- arbitrary
     off <- arbitrary
     ttl <- arbitrary
@@ -150,7 +151,7 @@ testIPv4Tos :: Word8 -> Bool
 testIPv4Tos t = let cmp f = defaultIPv4 {ipv4Tos = t} == f in
   testValidParse ("(ipv4 tos=" ++ show t ++ ")") cmp
 
-testIPv4Len :: Word16 -> Bool
+testIPv4Len :: Int -> Bool
 testIPv4Len l = let cmp f = defaultIPv4 {ipv4Len = l} == f in
   testValidParse ("(ipv4 len=" ++ show l ++ ")") cmp
 

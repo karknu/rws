@@ -91,7 +91,7 @@ data IPv4 = IPv4 {
   ipv4Ver    :: !Word8,
   ipv4Hlen   :: !Word8,
   ipv4Tos    :: !Word8,
-  ipv4Len    :: !Word16,
+  ipv4Len    :: !Int,
   ipv4Id     :: !Word16,
   ipv4Offset :: !Word16,
   ipv4Ttl    :: !Word8,
@@ -103,7 +103,7 @@ data IPv4 = IPv4 {
 } deriving (Show,Eq)
 
 defaultIPv4 :: IPv4
-defaultIPv4 = IPv4 4 5 0 0 0x1234 0 64 17 0 0xa0a0a0a1 0xa0a0a0a2 True
+defaultIPv4 = IPv4 4 5 0 (-1) 0x1234 0 64 17 0 0xa0a0a0a1 0xa0a0a0a2 True
 defaultIPv4Packet :: IPv4Pkt
 defaultIPv4Packet = IPv4Pkt defaultIPv4 [PPayload defaultPayload]
 
