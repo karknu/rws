@@ -19,25 +19,7 @@ import Test.Framework (Test)
 import Test.Framework.Providers.QuickCheck2 (testProperty)
 #endif
 
-parseIPv6Ver :: Parser Word8 
-parseIPv6Ver = parseIntAttribute "ver"
-
-parseIPv6Flow :: Parser Word32
-parseIPv6Flow = parseIntAttribute "flow"
-
-parseIPv6Tcl :: Parser Word8
-parseIPv6Tcl = parseIntAttribute "tcl"
-
-parseIPv6Len :: Parser Word16
-parseIPv6Len = parseIntAttribute "len"
-
-parseIPv6Hl :: Parser Word8
-parseIPv6Hl = parseIntAttribute "hl"
-
-parseIPv6Nh :: Parser Word8
-parseIPv6Nh = parseIntAttribute "nh"
-
-ipv6AddressDecl :: Parser IPv6Addr 
+ipv6AddressDecl :: Parser IPv6Addr
 ipv6AddressDecl = do
     a0 <- integer
     char ':'
@@ -74,12 +56,12 @@ parseIPv6Pkt :: Parser Packet -> Parser IPv6Pkt
 parseIPv6Pkt f = permute
   (tuple <$?> (IPv6Addr 0x2001000 0 0 1, parseIPv6Address "src")
          <|?> (IPv6Addr 0x2001000 0 0 2, parseIPv6Address "dst")
-         <|?> (6, parseIPv6Ver)
-         <|?> (0, try parseIPv6Tcl)
-         <|?> (0, try parseIPv6Flow)
-         <|?> (0, parseIPv6Len)
-         <|?> (17, parseIPv6Nh)
-         <|?> (64, parseIPv6Hl)
+         <|?> (6, parseIntAttribute "ver")
+         <|?> (0, try $ parseIntAttribute "tcl")
+         <|?> (0, try $ parseIntAttribute "flow")
+         <|?> (0,  parseIntAttribute "len")
+         <|?> (17, parseIntAttribute "nh")
+         <|?> (64, parseIntAttribute "hl")
          <|?> ([PPayload defaultPayload], parsePayload f))
   where
     tuple s d v tcl fl l nh hl =

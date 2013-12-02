@@ -19,47 +19,19 @@ import Test.Framework (Test)
 import Test.Framework.Providers.QuickCheck2 (testProperty)
 #endif
 
-
-parseIPv4Ver :: Parser Word8 
-parseIPv4Ver = parseIntAttribute "ver"
-
-parseIPv4Hlen :: Parser Word8
-parseIPv4Hlen = parseIntAttribute "hlen"
-
-parseIPv4Tos :: Parser Word8
-parseIPv4Tos = parseIntAttribute "tos"
-
-parseIPv4Len :: Parser Word16
-parseIPv4Len = parseIntAttribute "len"
-
-parseIPv4Id :: Parser Word16
-parseIPv4Id = parseIntAttribute "id"
-
-parseIPv4Ttl :: Parser Word8
-parseIPv4Ttl = parseIntAttribute "ttl"
-
-parseIPv4Prot :: Parser Word8
-parseIPv4Prot = parseIntAttribute "prot"
-
-parseIPv4Csum :: Parser Word16
-parseIPv4Csum = parseIntAttribute "csum"
-
-parseIPv4Offset :: Parser Word16
-parseIPv4Offset = parseIntAttribute "off"
-
 parseIPv4Pkt :: Parser Packet -> Parser IPv4Pkt
 parseIPv4Pkt f = permute
   (tuple <$?> (0xa0a0a0a1, parseIPv4Address "src")
          <|?> (0xa0a0a0a2, parseIPv4Address "dst")
-         <|?> (4, parseIPv4Ver)
-         <|?> (5, parseIPv4Hlen)
+         <|?> (4, parseIntAttribute "ver")
+         <|?> (5, parseIntAttribute "hlen")
          <|?> (-1, parseIntAttribute "len")
-         <|?> (0x1234, parseIPv4Id)
-         <|?> (17, parseIPv4Prot)
-         <|?> (0, try parseIPv4Tos)
-         <|?> (64, try parseIPv4Ttl)
-         <|?> (0, parseIPv4Csum)
-         <|?> (0, parseIPv4Offset)
+         <|?> (0x1234, parseIntAttribute "id")
+         <|?> (17, parseIntAttribute "prot")
+         <|?> (0, try $ parseIntAttribute "tos")
+         <|?> (64, try $ parseIntAttribute "ttl")
+         <|?> (0, try $ parseIntAttribute "csum")
+         <|?> (0, parseIntAttribute "off")
          <|?> ([PPayload defaultPayload], parsePayload f)
          <|?> (True, parseBoolAttribute "fixcsum"))
   where
