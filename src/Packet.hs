@@ -66,7 +66,7 @@ data IPv6 = IPv6 {
     ipv6Ver          :: !Word8,
     ipv6Tcl          :: !Word8,
     ipv6Flow         :: !Word32,
-    ipv6Length       :: !Word16,
+    ipv6Length       :: !Int,
     ipv6Nh           :: !Word8,
     ipv6Hl           :: !Word8,
     ipv6Src          :: !IPv6Addr,
@@ -81,7 +81,7 @@ data IPv6Pkt = IPv6Pkt {
 instance PayloadCarrier IPv6Pkt where payloadCarried = ipv6PktPayload
 
 defaultIPv6 :: IPv6
-defaultIPv6 = IPv6 6 0 0 0 17 64 (IPv6Addr 0x2001000 0 0 1) (IPv6Addr 0x2001000 0 0 2)
+defaultIPv6 = IPv6 6 0 0 (-1) 17 64 (IPv6Addr 0x2001000 0 0 1) (IPv6Addr 0x2001000 0 0 2)
 defaultIPv6Packet :: IPv6Pkt
 defaultIPv6Packet = IPv6Pkt defaultIPv6 [PPayload $ Payload 0 0]
 

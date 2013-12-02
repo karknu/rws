@@ -59,7 +59,7 @@ parseIPv6Pkt f = permute
          <|?> (6, parseIntAttribute "ver")
          <|?> (0, try $ parseIntAttribute "tcl")
          <|?> (0, try $ parseIntAttribute "flow")
-         <|?> (0,  parseIntAttribute "len")
+         <|?> (-1,  parseIntAttribute "len")
          <|?> (17, parseIntAttribute "nh")
          <|?> (64, parseIntAttribute "hl")
          <|?> ([PPayload defaultPayload], parsePayload f))
@@ -88,7 +88,7 @@ ipv6WriteHdr p = do
     putWord8 $ ipv6Tcl p `shiftL` 4 .|. fromIntegral (ipv6Flow p `shiftR` 16)
     -- pl_uint16_t flow_id
     putWord16be $ fromIntegral $ ipv6Flow p .&. 0xffff
-    putWord16be $ ipv6Length p
+    putWord16be $ fromIntegral $ ipv6Length p
     putWord8 $ ipv6Nh p
     putWord8 $ ipv6Hl p
     ipv6AddrWrite $ ipv6Src p 
@@ -96,7 +96,9 @@ ipv6WriteHdr p = do
 
 ipv6Write :: IPv6 -> Maybe Packet -> B.ByteString -> Put
 ipv6Write h _ bs = do
-  ipv6WriteHdr h {ipv6Length = fromIntegral $ B.length bs}
+  let hdr = if ipv6Length h == -1 then h {ipv6Length = fromIntegral $ B.length bs}
+                                  else h
+  ipv6WriteHdr hdr
   putLazyByteString bs
 
 pseudoIpv6Write :: IPv6 -> Word16 -> Put
